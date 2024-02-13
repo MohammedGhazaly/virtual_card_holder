@@ -27,7 +27,7 @@ class ScanScreen extends StatelessWidget {
                 children: [
                   TextButton.icon(
                     onPressed: () {
-                      scanPageProvider.getImage(
+                      scanPageProvider.extractTextFromImage(
                           imageSource: ImageSource.camera);
                     },
                     icon: const Icon(Icons.camera),
@@ -35,7 +35,7 @@ class ScanScreen extends StatelessWidget {
                   ),
                   TextButton.icon(
                     onPressed: () {
-                      scanPageProvider.getImage(
+                      scanPageProvider.extractTextFromImage(
                           imageSource: ImageSource.gallery);
                     },
                     icon: const Icon(Icons.photo),
