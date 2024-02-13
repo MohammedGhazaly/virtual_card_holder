@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:virtual_card_holder/providers/bottom_nav_bar_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = "/";
@@ -6,16 +8,39 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomNavBarProvider = Provider.of<BottomNavBarProvider>(context);
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         onPressed: () {},
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       appBar: AppBar(
         title: const Text("Contact List"),
         centerTitle: true,
+      ),
+      bottomNavigationBar: BottomAppBar(
+        // color: Colors.red,
+        padding: const EdgeInsets.all(0),
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 10,
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+          backgroundColor: const Color(0xffbae6fd),
+          currentIndex: bottomNavBarProvider.currentIndex,
+          onTap: bottomNavBarProvider.onTap,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "All",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: "Favorites",
+            ),
+          ],
+        ),
       ),
     );
   }
