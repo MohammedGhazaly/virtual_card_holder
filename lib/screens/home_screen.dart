@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:virtual_card_holder/providers/bottom_nav_bar_provider.dart';
+import 'package:virtual_card_holder/screens/scan_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = "/";
@@ -13,14 +15,21 @@ class HomeScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
-        onPressed: () {},
+        onPressed: () {
+          context.goNamed(ScanScreen.routeName);
+        },
         child: const Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: const Text("Contact List"),
+        title: Text(
+          bottomNavBarProvider.currentIndex == 0
+              ? "All Contact List"
+              : "Favorite",
+        ),
         centerTitle: true,
       ),
       bottomNavigationBar: BottomAppBar(
+        height: 65,
         // color: Colors.red,
         padding: const EdgeInsets.all(0),
         shape: const CircularNotchedRectangle(),
